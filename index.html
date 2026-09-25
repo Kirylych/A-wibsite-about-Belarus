@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A website about Belarus | Siamion Verevchick</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e8e8e8;
+            background-color: #0a0a0a;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        h1, h2, h3 { color: #ffffff; margin-bottom: 15px; }
+        h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid #d32f2f;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 25px;
+        }
+        p { margin-bottom: 15px; font-size: 1.1rem; color: #c8c8c8; }
+
+        header {
+            background-color: #000000;
+            color: white;
+            padding: 15px 0;
+            position: sticky; top: 0; z-index: 100;
+            border-bottom: 3px solid #d32f2f;
+            box-shadow: 0 2px 15px rgba(211, 47, 47, 0.3);
+        }
+        header .container {
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .logo { font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; gap: 10px; color: #fff; }
+        .logo span { color: #d32f2f; }
+        nav a {
+            color: #e0e0e0; text-decoration: none; margin-left: 20px;
+            font-weight: 500; transition: color 0.3s;
+        }
+        nav a:hover { color: #d32f2f; }
+
+        .title-block {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            color: white;
+            padding: 70px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 6px solid #d32f2f;
+        }
+        .title-block::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 8px;
+            background: linear-gradient(90deg, #d32f2f 33%, #009a49 33%, #009a49 66%, #ffffff 66%);
+        }
+        .title-block .work-label {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #ff5252;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        .title-block h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(211, 47, 47, 0.4);
+            letter-spacing: 1px;
+        }
+        .title-block .author {
+            display: inline-block;
+            background: rgba(211, 47, 47, 0.15);
+            border: 2px solid #d32f2f;
+            border-radius: 50px;
+            padding: 14px 40px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #ffffff;
+            box-shadow: 0 0 30px rgba(211, 47, 47, 0.3);
+        }
+        .title-block .author .label {
+            color: #ff5252;
+            font-weight: 400;
+            margin-right: 10px;
+        }
+
+        section {
+            padding: 70px 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .section-2 { background: #0f0f0f; }
+        .section-3 { background: #0a0a0a; }
+        .section-4 { background: #0f0f0f; }
+
+        .hero-content { display: flex; align-items: center; gap: 50px; }
+        .hero-text { flex: 1; }
+        .hero-text h2 { font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; border: none; display: block; padding: 0; color: #fff; }
+        .hero-text .subtitle {
+            font-size: 1.3rem; color: #ff5252; font-style: italic;
+            border-left: 4px solid #d32f2f; padding-left: 15px; margin-bottom: 25px;
+        }
+        .hero-image { flex: 1; text-align: center; }
+
+        .photo-box {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(211, 47, 47, 0.25);
+            background: #1a1a1a;
+            border: 3px solid #d32f2f;
+        }
+        .photo-box svg { display: block; width: 100%; height: auto; }
+
+        .president-quote {
+            background: #1a1a1a;
+            padding: 35px;
+            border-radius: 12px;
+            border-left: 5px solid #d32f2f;
+            margin-top: 30px;
+        }
+        .president-quote p {
+            font-size: 1.2rem; font-style: italic; margin-bottom: 12px;
+            color: #e8e8e8;
+        }
+        .president-quote .author {
+            font-weight: bold; text-align: right; font-style: normal; color: #ff5252;
+        }
+
+        .geo-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px; margin-top: 30px;
+        }
+        .geo-card {
+            background: #1a1a1a; padding: 28px; border-radius: 12px;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .geo-card:hover {
+            transform: translateY(-5px);
+            border-color: #d32f2f;
+        }
+        .geo-card h3 { color: #ff5252; font-size: 1.3rem; margin-bottom: 12px; }
+        .geo-card ul { list-style: none; padding: 0; }
+        .geo-card ul li {
+            padding: 7px 0;
+            border-bottom: 1px solid #2a2a2a;
+            color: #c8c8c8;
+        }
+        .geo-card ul li:last-child { border-bottom: none; }
+        .geo-card ul li strong { color: #ffffff; }
+
+        .stats-highlight {
+            display: flex; justify-content: space-around; flex-wrap: wrap;
+            margin: 30px 0; gap: 20px;
+        }
+        .stat-box {
+            background: #1a1a1a;
+            color: white;
+            padding: 28px;
+            border-radius: 12px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid #2a2a2a;
+            border-top: 4px solid #d32f2f;
+        }
+        .stat-box .number {
+            font-size: 2.5rem; font-weight: bold; display: block; color: #ff5252;
+        }
+        .stat-box .label { font-size: 1rem; color: #c8c8c8; }
+
+        .regions-table {
+            width: 100%; border-collapse: collapse; margin-top: 30px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .regions-table th, .regions-table td {
+            padding: 15px; text-align: left; border-bottom: 1px solid #2a2a2a;
+            color: #e0e0e0;
+        }
+        .regions-table th {
+            background-color: #000000; color: #ff5252; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase; font-size: 0.85rem;
+        }
+        .regions-table tr:nth-child(even) { background-color: #141414; }
+        .regions-table tr:hover { background-color: #222; }
+        .region-name {
+            font-weight: bold; color: #ffffff; cursor: pointer;
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            transition: text-decoration-color 0.3s, color 0.3s;
+        }
+        .region-name:hover { color: #ff5252; text-decoration-color: #ff5252; }
+        .capital-name { color: #a0a0a0; }
+
+        .nature-photo {
+            margin-top: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 3px solid #d32f2f;
+            box-shadow: 0 15px 40px rgba(211, 47, 47, 0.2);
+        }
+        .nature-photo svg { display: block; width: 100%; height: auto; }
+
+        .travel-region {
+            background: #1a1a1a; border-radius: 12px; padding: 28px;
+            margin-bottom: 25px;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: border-color 0.3s;
+        }
+        .travel-region:hover { border-color: #d32f2f; }
+        .travel-region h3 {
+            color: #ff5252; font-size: 1.5rem; margin-bottom: 18px;
+            border-bottom: 2px solid #2a2a2a; padding-bottom: 12px;
+            cursor: pointer; transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+        .travel-region h3:hover { color: #ffffff; }
+        .travel-region ul { list-style: none; padding: 0; }
+        .travel-region ul li {
+            padding: 10px 0 10px 28px; position: relative;
+            border-bottom: 1px dashed #2a2a2a;
+            cursor: pointer;
+            color: #c8c8c8;
+            transition: background 0.2s, padding-left 0.2s, color 0.2s;
+        }
+        .travel-region ul li:hover {
+            background: #222;
+            padding-left: 35px;
+            color: #ff5252;
+        }
+        .travel-region ul li:last-child { border-bottom: none; }
+        .travel-region ul li::before {
+            content: "📍"; position: absolute; left: 0; top: 10px;
+        }
+        .travel-region ul li strong { color: #ffffff; }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            animation: fadeIn 0.25s ease;
+        }
+        .modal-overlay.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content {
+            background: #141414;
+            max-width: 900px;
+            width: 100%;
+            max-height: 92vh;
+            border-radius: 12px;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(211, 47, 47, 0.4);
+            position: relative;
+            border: 2px solid #d32f2f;
+            animation: slideUp 0.3s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px; right: 15px;
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: #d32f2f;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s, transform 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+        .modal-close:hover { background: #ff5252; transform: rotate(90deg); }
+        .modal-image { width: 100%; background: #000; }
+        .modal-image svg { display: block; width: 100%; height: auto; }
+        .modal-info { padding: 28px 32px 32px; }
+        .modal-info .tag {
+            display: inline-block;
+            background: #d32f2f;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .modal-info h3 {
+            font-size: 1.7rem;
+            color: #ffffff;
+            margin-bottom: 14px;
+        }
+        .modal-info p {
+            font-size: 1rem;
+            color: #c8c8c8;
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        .modal-info .region-info {
+            background: #1a1a1a;
+            border-left: 4px solid #d32f2f;
+            padding: 14px 20px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+        }
+
+        footer {
+            background-color: #000000;
+            color: #c8c8c8;
+            text-align: center;
+            padding: 35px 0;
+            border-top: 3px solid #d32f2f;
+        }
+        footer p { margin: 6px 0; font-size: 1rem; color: #a0a0a0; }
+        footer .footer-author { color: #ff5252; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .hero-content { flex-direction: column; text-align: center; }
+            .hero-text h2 { font-size: 1.8rem; }
+            .hero-text .subtitle {
+                border-left: none; border-top: 4px solid #d32f2f;
+                padding-top: 15px; padding-left: 0;
+            }
+            nav { display: none; }
+            .regions-table th, .regions-table td { padding: 10px; font-size: 0.85rem; }
+            .title-block h1 { font-size: 1.9rem; }
+            .title-block .author { font-size: 1.05rem; padding: 12px 25px; }
+            .modal-info { padding: 20px; }
+            .modal-info h3 { font-size: 1.3rem; }
+            section { padding: 50px 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">🇧🇾 <span>Belarus</span></div>
+            <nav>
+                <a href="#general">General Info</a>
+                <a href="#geography">Geography</a>
+                <a href="#places">Places to Visit</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="title-block">
+        <div class="container">
+            <div class="work-label">Project</div>
+            <h1>A website about Belarus</h1>
+            <div class="author">
+                <span class="label">Author:</span> Siamion Verevchick
+            </div>
+        </div>
+    </section>
+
+    <section id="general" class="section-2">
+        <div class="container">
+            <h2>General Information</h2>
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h3 style="color:#ff5252; font-size:1.8rem; margin-bottom:15px;">Alexander Grigoryevich Lukashenko</h3>
+                    <p class="subtitle">The first President of the Republic of Belarus. In our country, he is more than a politician.</p>
+                    <p>Alexander Lukashenko stands at the origins of the formation and development of independent Belarus. For fellow presidents, he is a recognized authority. In defending national interests, he is known for a firm, sometimes tough, but invariably pro-Belarusian position. This is appreciated by citizens of other countries, who place the leader of our state at the top of trust ratings.</p>
+                    <p>As the guarantor of sovereignty, President Lukashenko defends the independence and security of the country as the Commander-in-Chief of the Armed Forces and Chairman of the Security Council of the Republic of Belarus. And in these positions, the Belarusian leader is unwavering and principled in promoting national interests.</p>
+                    <div class="president-quote">
+                        <p>"We are not just building a state. We are building a home where our children and grandchildren will live. And we will do everything to make this home strong and safe."</p>
+                        <div class="author">— Alexander Lukashenko</div>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="photo-box">
+                        <svg viewBox="0 0 500 600" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="bgHero" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#d32f2f"/>
+                                    <stop offset="45%" stop-color="#1a1a1a"/>
+                                    <stop offset="100%" stop-color="#000000"/>
+                                </linearGradient>
+                                <radialGradient id="skinGrad" cx="50%" cy="40%" r="60%">
+                                    <stop offset="0%" stop-color="#f7d8c0"/>
+                                    <stop offset="60%" stop-color="#e8b890"/>
+                                    <stop offset="100%" stop-color="#c89468"/>
+                                </radialGradient>
+                            </defs>
+                            <rect width="500" height="600" fill="url(#bgHero)"/>
+                            <rect x="0" y="0" width="500" height="22" fill="#d32f2f"/>
+                            <rect x="0" y="22" width="500" height="22" fill="#009a49"/>
+                            <path d="M 70 600 L 70 470 Q 120 400 250 400 Q 380 400 430 470 L 430 600 Z" fill="#1a1a1a"/>
+                            <path d="M 185 425 L 250 545 L 315 425 L 285 400 L 215 400 Z" fill="#fafafa"/>
+                            <path d="M 240 455 L 260 455 L 278 555 L 250 595 L 222 555 Z" fill="#1a3c6e"/>
+                            <path d="M 220 355 L 220 425 Q 250 445 280 425 L 280 355 Z" fill="url(#skinGrad)"/>
+                            <ellipse cx="250" cy="268" rx="100" ry="122" fill="url(#skinGrad)"/>
+                            <path d="M 148 240 Q 158 145 250 135 Q 342 145 352 240 Q 358 195 330 165 Q 250 125 170 165 Q 142 195 148 240 Z" fill="#c8c8c8"/>
+                            <path d="M 190 195 Q 250 168 310 195 Q 305 218 250 218 Q 195 218 190 195 Z" fill="url(#skinGrad)" opacity="0.95"/>
+                            <ellipse cx="148" cy="278" rx="13" ry="24" fill="#dcae86"/>
+                            <ellipse cx="352" cy="278" rx="13" ry="24" fill="#dcae86"/>
+                            <path d="M 185 245 Q 210 238 235 245 Q 233 252 210 250 Q 187 252 185 245 Z" fill="#9a7a5a"/>
+                            <path d="M 265 245 Q 290 238 315 245 Q 313 252 290 250 Q 267 252 265 245 Z" fill="#9a7a5a"/>
+                            <ellipse cx="210" cy="268" rx="20" ry="12" fill="#ffffff"/>
+                            <ellipse cx="290" cy="268" rx="20" ry="12" fill="#ffffff"/>
+                            <circle cx="210" cy="268" r="9" fill="#6a8a5a"/>
+                            <circle cx="290" cy="268" r="9" fill="#6a8a5a"/>
+                            <circle cx="210" cy="268" r="4.5" fill="#0a0a0a"/>
+                            <circle cx="290" cy="268" r="4.5" fill="#0a0a0a"/>
+                            <circle cx="212" cy="265" r="2" fill="#ffffff"/>
+                            <circle cx="292" cy="265" r="2" fill="#ffffff"/>
+                            <path d="M 245 272 Q 240 315 250 330 Q 260 315 255 272 Z" fill="#d4a888" opacity="0.75"/>
+                            <ellipse cx="250" cy="330" rx="9" ry="5" fill="#c08860"/>
+                            <ellipse cx="180" cy="300" rx="22" ry="14" fill="#e0a080" opacity="0.4"/>
+                            <ellipse cx="320" cy="300" rx="22" ry="14" fill="#e0a080" opacity="0.4"/>
+                            <path d="M 200 350 Q 220 340 250 348 Q 280 340 300 350 Q 290 366 265 361 Q 250 356 235 361 Q 210 366 200 350 Z" fill="#5a3a1a"/>
+                            <path d="M 225 385 Q 250 393 275 385" stroke="#8a5a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+                            <text x="250" y="555" text-anchor="middle" fill="#ffffff" font-size="20" font-family="Georgia, serif" font-weight="bold" letter-spacing="3">A. LUKASHENKO</text>
+                            <text x="250" y="578" text-anchor="middle" fill="#ff5252" font-size="11" font-family="Arial" letter-spacing="3">PRESIDENT OF BELARUS</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="geography" class="section-3">
+        <div class="container">
+            <h2>Geography</h2>
+            <p>The Republic of Belarus is located in the center of Europe, in its eastern part. Major transit routes of the continent pass through the territory of the country, including the main transport corridor of Eurasia from southwest to northeast. The shortest transport routes connecting the Baltic and Black Seas also run here.</p>
+
+            <div class="geo-grid">
+                <div class="geo-card">
+                    <h3>📍 Borders and Area</h3>
+                    <ul>
+                        <li><strong>Total area:</strong> 207,600 km²</li>
+                        <li><strong>Border length:</strong> 3,617 km</li>
+                        <li><strong>Neighbors:</strong> Poland, Lithuania, Latvia, Russia, Ukraine</li>
+                        <li><strong>Distance to capitals:</strong> Vilnius — 215 km, Riga — 470 km, Warsaw — 550 km, Kyiv — 580 km, Moscow — 700 km</li>
+                    </ul>
+                </div>
+                <div class="geo-card">
+                    <h3>⛰️ Terrain</h3>
+                    <ul>
+                        <li>Located within the East European Platform</li>
+                        <li>Predominantly flat terrain with hills, lowlands, marshes and lakes</li>
+                        <li>Lowlands (up to 200 m) — about 70% of territory</li>
+                        <li><strong>Lowest point:</strong> Neman River valley (80–90 m)</li>
+                        <li><strong>Highest point:</strong> Dzerzhinsky Hill (345 m)</li>
+                    </ul>
+                </div>
+                <div class="geo-card">
+                    <h3>🌲 Natural Zones</h3>
+                    <ul>
+                        <li><strong>North:</strong> Belarusian Lake District (glacial relief, hills and ridges)</li>
+                        <li><strong>Center:</strong> Belarusian Ridge and East Belarusian plateau-like lowland</li>
+                        <li><strong>South:</strong> Polesie (morainic and aquaglacial plains, often marshy lowlands)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin-top:50px; color:#ff5252;">Population</h3>
+            <p>As of 1 January 2026, the population of Belarus was <strong style="color:#fff;">9,056,080 people</strong>. This is about 0.1% of the world population and approximately 1.2% of the European population. Belarus ranks 99th in the world and 7th in the CIS by population.</p>
+
+            <div class="stats-highlight">
+                <div class="stat-box"><span class="number">79%</span><span class="label">Urban (7,157,309)</span></div>
+                <div class="stat-box"><span class="number">21%</span><span class="label">Rural (1,898,771)</span></div>
+                <div class="stat-box"><span class="number">115</span><span class="label">Towns</span></div>
+                <div class="stat-box"><span class="number">22,973</span><span class="label">Villages</span></div>
+            </div>
+
+            <h3 style="margin-top:40px; color:#ff5252;">Regions and Their Capitals</h3>
+            <p style="font-size: 0.95rem; color: #a0a0a0; margin-bottom: 10px;">💡 Click on a region name to see its details.</p>
+            <table class="regions-table">
+                <thead>
+                    <tr>
+                        <th>Region</th>
+                        <th>Population of Region</th>
+                        <th>Regional Capital</th>
+                        <th>Population of Capital</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><span class="region-name" data-region="brest-oblast">Brest Oblast</span></td><td>1,290,628</td><td class="capital-name">Brest</td><td>347,138</td></tr>
+                    <tr><td><span class="region-name" data-region="vitebsk-oblast">Vitebsk Oblast</span></td><td>~1,081,000*</td><td class="capital-name">Vitebsk</td><td>~359,000*</td></tr>
+                    <tr><td><span class="region-name" data-region="gomel-oblast">Gomel Oblast</span></td><td>~1,338,000*</td><td class="capital-name">Gomel</td><td>~501,000*</td></tr>
+                    <tr><td><span class="region-name" data-region="grodno-oblast">Grodno Oblast</span></td><td>~1,004,000*</td><td class="capital-name">Grodno</td><td>~356,000*</td></tr>
+                    <tr><td><span class="region-name" data-region="minsk-oblast">Minsk Oblast</span></td><td>~1,480,000*</td><td class="capital-name">Minsk</td><td>~1,992,000*</td></tr>
+                    <tr><td><span class="region-name" data-region="mogilev-oblast">Mogilev Oblast</span></td><td>~981,000*</td><td class="capital-name">Mogilev</td><td>~353,000*</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.9rem; color: #808080; margin-top: 10px;">* Note: Data for some regions and capitals are approximate.</p>
+
+            <div class="nature-photo">
+                <svg viewBox="0 0 1200 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+                    <defs>
+                        <linearGradient id="skyNat" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#0a1a3a"/>
+                            <stop offset="55%" stop-color="#1a3a6a"/>
+                            <stop offset="100%" stop-color="#4a2a4a"/>
+                        </linearGradient>
+                        <linearGradient id="lakeNat" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#2a5a8a"/>
+                            <stop offset="100%" stop-color="#0a1a3a"/>
+                        </linearGradient>
+                        <radialGradient id="moonGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+                            <stop offset="40%" stop-color="#ffe680" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="#ffe680" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                    <rect width="1200" height="450" fill="url(#skyNat)"/>
+                    <circle cx="950" cy="110" r="120" fill="url(#moonGlow)"/>
+                    <circle cx="950" cy="110" r="40" fill="#f0f0ff"/>
+                    <circle cx="940" cy="105" r="8" fill="#d0d0e0" opacity="0.5"/>
+                    <circle cx="960" cy="120" r="5" fill="#d0d0e0" opacity="0.5"/>
+                    <g fill="#ffffff">
+                        <circle cx="100" cy="60" r="2"/>
+                        <circle cx="200" cy="100" r="1.5"/>
+                        <circle cx="350" cy="50" r="2"/>
+                        <circle cx="500" cy="80" r="1.5"/>
+                        <circle cx="650" cy="40" r="2"/>
+                        <circle cx="800" cy="90" r="1.5"/>
+                        <circle cx="1100" cy="70" r="2"/>
+                    </g>
+                    <path d="M 0 260 Q 200 210 400 250 Q 600 220 800 260 Q 1000 230 1200 260 L 1200 450 L 0 450 Z" fill="#1e3a1e"/>
+                    <path d="M 0 320 Q 300 270 600 310 Q 900 270 1200 320 L 1200 450 L 0 450 Z" fill="#0e2a0e"/>
+                    <ellipse cx="600" cy="410" rx="500" ry="55" fill="url(#lakeNat)"/>
+                    <ellipse cx="600" cy="415" rx="380" ry="35" fill="#1a3a6a" opacity="0.6"/>
+                    <ellipse cx="950" cy="410" rx="60" ry="12" fill="#f0f0ff" opacity="0.5"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section id="places" class="section-4">
+        <div class="container">
+            <h2>Places to Visit</h2>
+            <p>💡 Click on any region title or attraction to see its details.</p>
+
+            <div class="travel-region">
+                <h3 data-region="brest-oblast">Brest Oblast</h3>
+                <ul>
+                    <li data-attraction="brest-fortress"><strong>Brest Hero Fortress</strong> — one of the most famous WWII memorials in Belarus, awarded the title "Hero Fortress" in 1965</li>
+                    <li data-attraction="belovezhskaya"><strong>Belovezhskaya Pushcha National Park</strong> — a UNESCO World Heritage Site, one of Europe's largest primeval forests</li>
+                    <li data-attraction="kosovo-palace"><strong>Kosovo Palace and Park Ensemble</strong> — a 19th-century neo-Gothic palace known as "the little Versailles of Belarus"</li>
+                    <li data-attraction="ruzhany-palace"><strong>Ruzhany Sapieha Palace</strong> — the ruins of a historic palace</li>
+                    <li data-attraction="pripyat-cruise"><strong>Pripyat River Cruises</strong> — the only river cruise experience in Belarus</li>
+                </ul>
+            </div>
+
+            <div class="travel-region">
+                <h3 data-region="vitebsk-oblast">Vitebsk Oblast</h3>
+                <ul>
+                    <li data-attraction="braslav-lakes"><strong>Braslav Lakes National Park</strong> — 267 lakes and 216 bird species</li>
+                    <li data-attraction="ginkovskaya-cave"><strong>Ginkovskaya Cave</strong> — the only karst cave in Belarus</li>
+                    <li data-attraction="kozyany-swamp"><strong>Kozyany Swamp Nature Reserve</strong> — a unique "Mercury-like landscape"</li>
+                    <li data-attraction="ula-castle"><strong>Ula Castle Ruins</strong> — remains of a 16th-century castle</li>
+                </ul>
+            </div>
+
+            <div class="travel-region">
+                <h3 data-region="gomel-oblast">Gomel Oblast</h3>
+                <ul>
+                    <li data-attraction="gomel-palace"><strong>Gomel Palace and Park Ensemble</strong> — former palace of the Rumyantsev and Paskevich families</li>
+                    <li data-attraction="turov"><strong>Turov</strong> — the ancient capital of Polesie</li>
+                    <li data-attraction="ola-trail"><strong>Ola River Ecological Trail</strong> — opened in 2024</li>
+                    <li data-attraction="pripyatsky-park"><strong>Pripyatsky National Park</strong> — over 250 bird species</li>
+                    <li data-attraction="vetka"><strong>Vetka</strong> — a historic center of Old Believers</li>
+                </ul>
+            </div>
+
+            <div class="travel-region">
+                <h3 data-region="grodno-oblast">Grodno Oblast</h3>
+                <ul>
+                    <li data-attraction="krewo-castle"><strong>Krewo Castle</strong> — 14th-century castle, site of the Union of Krewo (1385)</li>
+                    <li data-attraction="kalozha-church"><strong>Kalozha Church</strong> — the oldest surviving Orthodox church in Belarus (12th c.)</li>
+                    <li data-attraction="mosty-bridge"><strong>Mosty Suspension Bridge</strong> — the longest in Belarus (193 m)</li>
+                    <li data-attraction="free-miller"><strong>"Free Miller" Tourist Complex</strong> — old water mill with traditional food</li>
+                    <li data-attraction="korobchitsy"><strong>"Korobchitsy" Partisan Camp</strong> — authentic WWII recreation</li>
+                </ul>
+            </div>
+
+            <div class="travel-region">
+                <h3 data-region="minsk-oblast">Minsk Oblast</h3>
+                <ul>
+                    <li data-attraction="ivyanets"><strong>Ivyanets</strong> — with two remarkable churches and the "Three Bears" sculpture</li>
+                    <li data-attraction="slutsk"><strong>Slutsk</strong> — world-famous birthplace of Slutsk sashes</li>
+                    <li data-attraction="borisov"><strong>Borisov</strong> — site of the 1812 Berezina battle</li>
+                    <li data-attraction="nesvizh-attr"><strong>Nesvizh Castle</strong> — historic palace of the Radziwiłł family</li>
+                </ul>
+            </div>
+
+            <div class="travel-region">
+                <h3 data-region="mogilev-oblast">Mogilev Oblast</h3>
+                <ul>
+                    <li data-attraction="zhilichy-palace"><strong>Zhilichy Palace</strong> — "the Versailles of Belarus"</li>
+                    <li data-attraction="duleby-island"><strong>"Duleby Island" Nature Reserve</strong> — unique forest landscape</li>
+                    <li data-attraction="buynichi"><strong>Buynichi</strong> — Buynichi Field memorial and zoo</li>
+                    <li data-attraction="blue-spring"><strong>"Blue Spring"</strong> — one of Europe's largest natural springs</li>
+                    <li data-attraction="potemkin-palace"><strong>Potemkin Palace (Krichev)</strong> — 18th-century palace, now a museum</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Republic of Belarus. Information Website.</p>
+            <p>Created with respect for history and the future of the country.</p>
+            <p class="footer-author">Author: Siamion Verevchick</p>
+        </div>
+    </footer>
+
+    <div class="modal-overlay" id="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+            <div class="modal-image" id="modalImage"></div>
+            <div class="modal-info">
+                <span class="tag" id="modalTag">Info</span>
+                <h3 id="modalTitle">Title</h3>
+                <p id="modalDesc">Description</p>
+                <div class="region-info" id="modalRegionInfo" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // ============================================================
+    // УНИКАЛЬНЫЕ SVG-ИЛЛЮСТРАЦИИ ДЛЯ КАЖДОЙ ССЫЛКИ
+    // ============================================================
+    const SVG = {
+
+        // ===== РЕГИОНЫ (6 уникальных) =====
+        "svg-brest-oblast": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="rb" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a3a"/><stop offset="100%" stop-color="#1a2a4a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#rb)"/>
+            <circle cx="680" cy="90" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.8"><circle cx="100" cy="70" r="2"/><circle cx="250" cy="50" r="1.5"/><circle cx="450" cy="90" r="2"/><circle cx="600" cy="60" r="1.5"/></g>
+            <rect x="100" y="240" width="600" height="200" fill="#2a3a2a"/>
+            <rect x="100" y="240" width="600" height="25" fill="#1a2a1a"/>
+            <polygon points="120,240 160,160 200,240" fill="#1a3a1a"/>
+            <polygon points="220,240 260,150 300,240" fill="#1a3a1a"/>
+            <polygon points="500,240 540,160 580,240" fill="#1a3a1a"/>
+            <polygon points="600,240 640,150 680,240" fill="#1a3a1a"/>
+            <rect x="330" y="300" width="140" height="80" fill="#4a3a2a"/>
+            <rect x="350" y="320" width="30" height="40" fill="#1a0a0a"/>
+            <rect x="420" y="320" width="30" height="40" fill="#1a0a0a"/>
+            <text x="400" y="470" text-anchor="middle" fill="#ff5252" font-size="24" font-family="Arial" font-weight="bold" letter-spacing="3">BREST OBLAST</text>
+        </svg>`,
+
+        "svg-vitebsk-oblast": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="rv" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a2a3a"/><stop offset="100%" stop-color="#1a4a5a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#rv)"/>
+            <circle cx="150" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.8"><circle cx="400" cy="60" r="2"/><circle cx="550" cy="80" r="1.5"/><circle cx="700" cy="50" r="2"/></g>
+            <ellipse cx="200" cy="380" rx="120" ry="30" fill="#2a5a8a"/>
+            <ellipse cx="450" cy="400" rx="140" ry="35" fill="#2a5a8a"/>
+            <ellipse cx="650" cy="380" rx="100" ry="25" fill="#2a5a8a"/>
+            <polygon points="100,300 130,240 160,300" fill="#1a4a1a"/>
+            <polygon points="200,300 230,250 260,300" fill="#1a4a1a"/>
+            <polygon points="500,300 530,240 560,300" fill="#1a4a1a"/>
+            <polygon points="650,300 680,250 710,300" fill="#1a4a1a"/>
+            <text x="400" y="470" text-anchor="middle" fill="#ff5252" font-size="24" font-family="Arial" font-weight="bold" letter-spacing="3">VITEBSK OBLAST</text>
+        </svg>`,
+
+        "svg-gomel-oblast": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="rg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a0a2a"/><stop offset="100%" stop-color="#2a1a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#rg)"/>
+            <circle cx="650" cy="100" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.8"><circle cx="120" cy="70" r="2"/><circle cx="300" cy="100" r="1.5"/><circle cx="500" cy="80" r="2"/></g>
+            <rect x="200" y="240" width="400" height="200" fill="#3a2a4a"/>
+            <rect x="200" y="240" width="400" height="25" fill="#2a1a3a"/>
+            <polygon points="200,240 400,140 600,240" fill="#2a1a3a"/>
+            <rect x="370" y="280" width="60" height="100" fill="#1a0a2a"/>
+            <rect x="250" y="300" width="40" height="40" fill="#ffcc44" opacity="0.8"/>
+            <rect x="510" y="300" width="40" height="40" fill="#ffcc44" opacity="0.8"/>
+            <ellipse cx="400" cy="460" rx="350" ry="30" fill="#1a3a5a" opacity="0.7"/>
+            <text x="400" y="470" text-anchor="middle" fill="#ff5252" font-size="24" font-family="Arial" font-weight="bold" letter-spacing="3">GOMEL OBLAST</text>
+        </svg>`,
+
+        "svg-grodno-oblast": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="rgr" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a2a"/><stop offset="100%" stop-color="#1a2a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#rgr)"/>
+            <circle cx="200" cy="90" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.8"><circle cx="400" cy="60" r="2"/><circle cx="600" cy="100" r="1.5"/><circle cx="700" cy="70" r="2"/></g>
+            <rect x="250" y="220" width="300" height="230" fill="#3a2a2a"/>
+            <rect x="250" y="220" width="300" height="20" fill="#2a1a1a"/>
+            <rect x="230" y="160" width="50" height="290" fill="#3a2a2a"/>
+            <polygon points="230,160 255,100 280,160" fill="#5a1a1a"/>
+            <rect x="520" y="160" width="50" height="290" fill="#3a2a2a"/>
+            <polygon points="520,160 545,100 570,160" fill="#5a1a1a"/>
+            <rect x="370" y="140" width="60" height="310" fill="#3a2a2a"/>
+            <polygon points="370,140 400,70 430,140" fill="#5a1a1a"/>
+            <text x="400" y="470" text-anchor="middle" fill="#ff5252" font-size="24" font-family="Arial" font-weight="bold" letter-spacing="3">GRODNO OBLAST</text>
+        </svg>`,
+
+        "svg-minsk-oblast": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="rm" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a0a0a"/><stop offset="100%" stop-color="#2a1a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#rm)"/>
+            <circle cx="400" cy="120" r="50" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.8"><circle cx="100" cy="80" r="2"/><circle cx="250" cy="60" r="1.5"/><circle cx="600" cy="100" r="2"/><circle cx="700" cy="70" r="1.5"/></g>
+            <rect x="180" y="240" width="440" height="200" fill="#3a2a3a"/>
+            <rect x="180" y="240" width="440" height="20" fill="#2a1a2a"/>
+            <ellipse cx="400" cy="230" rx="130" ry="40" fill="#3a2a3a"/>
+            <rect x="396" y="130" width="8" height="100" fill="#666"/>
+            <rect x="404" y="130" width="50" height="30" fill="#d32f2f"/>
+            <rect x="404" y="130" width="50" height="15" fill="#009a49"/>
+            <rect x="220" y="290" width="25" height="150" fill="#4a3a4a"/>
+            <rect x="280" y="290" width="25" height="150" fill="#4a3a4a"/>
+            <rect x="340" y="290" width="25" height="150" fill="#4a3a4a"/>
+            <rect x="435" y="290" width="25" height="150" fill="#4a3a4a"/>
+            <rect x="495" y="290" width="25" height="150" fill="#4a3a4a"/>
+            <rect x="555" y="290" width="25" height="150" fill="#4a3a4a"/>
+            <text x="400" y="470" text-anchor="middle" fill="#ff5252" font-size="24" font-family="Arial" font-weight="bold" letter-spacing="3">MINSK OBLAST</text>
+        </svg>`,
+
+        "svg-mogilev-oblast": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="rmo" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a2a1a"/><stop offset="100%" stop-color="#1a4a2a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#rmo)"/>
+            <circle cx="600" cy="90" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.8"><circle cx="150" cy="70" r="2"/><circle cx="350" cy="100" r="1.5"/><circle cx="500" cy="60" r="2"/></g>
+            <path d="M 0 320 Q 200 280 400 310 Q 600 280 800 320 L 800 500 L 0 500 Z" fill="#1a3a1a"/>
+            <circle cx="300" cy="400" r="40" fill="#2a5a8a"/>
+            <circle cx="500" cy="420" r="50" fill="#2a5a8a"/>
+            <circle cx="300" cy="400" r="25" fill="#4a8ac0"/>
+            <circle cx="500" cy="420" r="30" fill="#4a8ac0"/>
+            <polygon points="100,300 120,240 140,300" fill="#0a1a0a"/>
+            <polygon points="650,300 670,240 690,300" fill="#0a1a0a"/>
+            <text x="400" y="470" text-anchor="middle" fill="#ff5252" font-size="24" font-family="Arial" font-weight="bold" letter-spacing="3">MOGILEV OBLAST</text>
+        </svg>`,
+
+        // ===== ДОСТОПРИМЕЧАТЕЛЬНОСТИ (у каждой своя) =====
+        "svg-brest-fortress": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="bf" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a0a1a"/><stop offset="60%" stop-color="#3a1a1a"/><stop offset="100%" stop-color="#5a2a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#bf)"/>
+            <circle cx="650" cy="250" r="80" fill="#ff8844" opacity="0.3"/>
+            <circle cx="650" cy="250" r="40" fill="#ffaa66" opacity="0.5"/>
+            <g fill="#ffdd44" opacity="0.8"><circle cx="120" cy="70" r="3"/><circle cx="240" cy="100" r="2"/><circle cx="500" cy="90" r="3"/></g>
+            <rect x="160" y="260" width="480" height="180" fill="#6a5a4a"/>
+            <rect x="160" y="260" width="480" height="28" fill="#4a3a2a"/>
+            <rect x="160" y="230" width="35" height="30" fill="#6a5a4a"/>
+            <rect x="230" y="230" width="35" height="30" fill="#6a5a4a"/>
+            <rect x="300" y="230" width="35" height="30" fill="#6a5a4a"/>
+            <rect x="370" y="230" width="35" height="30" fill="#6a5a4a"/>
+            <rect x="440" y="230" width="35" height="30" fill="#6a5a4a"/>
+            <rect x="510" y="230" width="35" height="30" fill="#6a5a4a"/>
+            <path d="M 340 440 L 340 350 Q 400 320 460 350 L 460 440 Z" fill="#2a1a0a"/>
+            <polygon points="400,140 412,180 455,180 420,208 432,250 400,225 368,250 380,208 345,180 388,180" fill="#d32f2f"/>
+            <ellipse cx="400" cy="440" rx="35" ry="18" fill="#d32f2f"/>
+            <ellipse cx="400" cy="435" rx="22" ry="12" fill="#ff8800"/>
+            <ellipse cx="400" cy="430" rx="12" ry="7" fill="#ffdd00"/>
+            <rect x="360" y="455" width="80" height="18" fill="#3a2a1a"/>
+            <text x="400" y="490" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">BREST HERO FORTRESS</text>
+        </svg>`,
+
+        "svg-belovezhskaya": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="blv" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a2a0a"/><stop offset="100%" stop-color="#1a3a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#blv)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.7"><circle cx="400" cy="60" r="2"/><circle cx="600" cy="90" r="1.5"/><circle cx="700" cy="50" r="2"/></g>
+            <path d="M 0 280 Q 400 240 800 280 L 800 500 L 0 500 Z" fill="#0e2a0e"/>
+            <g fill="#0a1a0a">
+                <polygon points="100,280 130,180 160,280"/>
+                <polygon points="200,290 230,170 260,290"/>
+                <polygon points="320,270 350,160 380,270"/>
+                <polygon points="440,280 470,180 500,280"/>
+                <polygon points="560,290 590,170 620,290"/>
+                <polygon points="680,280 710,180 740,280"/>
+            </g>
+            <ellipse cx="400" cy="410" rx="70" ry="40" fill="#3a2a1a"/>
+            <ellipse cx="400" cy="400" rx="50" ry="28" fill="#5a3a1a"/>
+            <text x="400" y="475" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">BELOVEZHSKAYA PUSHCHA</text>
+        </svg>`,
+
+        "svg-kosovo-palace": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="kp" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a0a2a"/><stop offset="100%" stop-color="#1a1a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#kp)"/>
+            <circle cx="650" cy="90" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.7"><circle cx="150" cy="70" r="2"/><circle cx="350" cy="100" r="1.5"/></g>
+            <rect x="180" y="220" width="440" height="220" fill="#3a3a5a"/>
+            <rect x="180" y="220" width="440" height="20" fill="#2a2a4a"/>
+            <rect x="160" y="180" width="40" height="260" fill="#3a3a5a"/>
+            <polygon points="160,180 180,130 200,180" fill="#5a1a1a"/>
+            <rect x="600" y="180" width="40" height="260" fill="#3a3a5a"/>
+            <polygon points="600,180 620,130 640,180" fill="#5a1a1a"/>
+            <rect x="360" y="150" width="80" height="290" fill="#3a3a5a"/>
+            <polygon points="360,150 400,90 440,150" fill="#5a1a1a"/>
+            <rect x="380" y="250" width="40" height="60" fill="#1a0a0a"/>
+            <text x="400" y="480" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">KOSOVO PALACE</text>
+        </svg>`,
+
+        "svg-ruzhany": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="rz" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a1a0a"/><stop offset="100%" stop-color="#2a2a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#rz)"/>
+            <circle cx="650" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="200" y="280" width="400" height="160" fill="#4a3a2a"/>
+            <rect x="180" y="240" width="50" height="200" fill="#3a2a1a"/>
+            <polygon points="180,240 205,180 230,240" fill="#5a1a1a"/>
+            <rect x="570" y="240" width="50" height="200" fill="#3a2a1a"/>
+            <polygon points="570,240 595,180 620,240" fill="#5a1a1a"/>
+            <rect x="350" y="260" width="100" height="180" fill="#3a2a1a"/>
+            <polygon points="350,260 400,200 450,260" fill="#5a1a1a"/>
+            <rect x="0" y="440" width="800" height="60" fill="#1a3a1a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">RUZHANY PALACE</text>
+        </svg>`,
+
+        "svg-pripyat": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="pp" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a2a"/><stop offset="100%" stop-color="#1a3a4a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#pp)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.7"><circle cx="450" cy="70" r="2"/><circle cx="650" cy="100" r="1.5"/></g>
+            <rect x="0" y="320" width="800" height="180" fill="#1a4a6a"/>
+            <ellipse cx="400" cy="400" rx="400" ry="80" fill="#0a3a5a"/>
+            <ellipse cx="400" cy="400" rx="250" ry="40" fill="#1a5a8a"/>
+            <polygon points="250,320 400,220 550,320" fill="#3a2a1a"/>
+            <rect x="240" y="320" width="320" height="40" fill="#2a1a0a"/>
+            <text x="400" y="490" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">PRIPYAT RIVER CRUISE</text>
+        </svg>`,
+
+        "svg-braslav": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="br" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a3a"/><stop offset="100%" stop-color="#1a3a5a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#br)"/>
+            <circle cx="600" cy="80" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <g fill="#ffffff" opacity="0.8"><circle cx="150" cy="60" r="2"/><circle cx="350" cy="90" r="1.5"/><circle cx="500" cy="70" r="2"/></g>
+            <path d="M 0 300 Q 400 260 800 300 L 800 500 L 0 500 Z" fill="#1a3a1a"/>
+            <ellipse cx="180" cy="400" rx="100" ry="25" fill="#2a5a8a"/>
+            <ellipse cx="450" cy="420" rx="140" ry="35" fill="#2a5a8a"/>
+            <ellipse cx="680" cy="400" rx="90" ry="22" fill="#2a5a8a"/>
+            <g fill="#0a1a0a">
+                <polygon points="80,300 100,240 120,300"/>
+                <polygon points="200,300 220,250 240,300"/>
+                <polygon points="620,300 640,240 660,300"/>
+            </g>
+            <text x="400" y="480" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">BRASLAV LAKES</text>
+        </svg>`,
+
+        "svg-cave": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <rect width="800" height="500" fill="#1a0a0a"/>
+            <ellipse cx="400" cy="280" rx="280" ry="180" fill="#3a2a1a"/>
+            <ellipse cx="400" cy="280" rx="220" ry="140" fill="#1a0a00"/>
+            <ellipse cx="400" cy="280" rx="150" ry="90" fill="#000000"/>
+            <g fill="#ffdd44"><circle cx="350" cy="250" r="4"/><circle cx="450" cy="280" r="3"/><circle cx="400" cy="310" r="3"/><circle cx="380" cy="290" r="2"/></g>
+            <text x="400" y="480" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">GINKOVSKAYA CAVE</text>
+        </svg>`,
+
+        "svg-swamp": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="sw" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a1a0a"/><stop offset="100%" stop-color="#2a2a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#sw)"/>
+            <circle cx="650" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <ellipse cx="200" cy="200" rx="70" ry="25" fill="#2a5a8a"/>
+            <ellipse cx="450" cy="250" rx="100" ry="30" fill="#2a5a8a"/>
+            <ellipse cx="650" cy="220" rx="80" ry="26" fill="#2a5a8a"/>
+            <ellipse cx="300" cy="350" rx="60" ry="20" fill="#2a5a8a"/>
+            <ellipse cx="550" cy="380" rx="70" ry="24" fill="#2a5a8a"/>
+            <g stroke="#1a3a0a" stroke-width="3" fill="none">
+                <path d="M 100 300 Q 110 260 120 300"/>
+                <path d="M 200 350 Q 210 310 220 350"/>
+                <path d="M 600 350 Q 610 310 620 350"/>
+            </g>
+            <text x="400" y="480" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">KOZYANY SWAMP</text>
+        </svg>`,
+
+        "svg-ula": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="ul" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a2a"/><stop offset="100%" stop-color="#1a2a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#ul)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="250" y="300" width="300" height="140" fill="#3a2a1a"/>
+            <rect x="230" y="260" width="40" height="180" fill="#2a1a0a"/>
+            <polygon points="230,260 250,210 270,260" fill="#5a1a1a"/>
+            <rect x="530" y="260" width="40" height="180" fill="#2a1a0a"/>
+            <polygon points="530,260 550,210 570,260" fill="#5a1a1a"/>
+            <rect x="0" y="440" width="800" height="60" fill="#1a3a1a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">ULA CASTLE RUINS</text>
+        </svg>`,
+
+        "svg-gomel-palace": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gp" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a0a2a"/><stop offset="100%" stop-color="#1a1a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#gp)"/>
+            <circle cx="650" cy="100" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="180" y="240" width="440" height="200" fill="#4a4a3a"/>
+            <rect x="180" y="240" width="440" height="20" fill="#3a3a2a"/>
+            <rect x="160" y="200" width="40" height="240" fill="#4a4a3a"/>
+            <polygon points="160,200 180,150 200,200" fill="#5a1a1a"/>
+            <rect x="600" y="200" width="40" height="240" fill="#4a4a3a"/>
+            <polygon points="600,200 620,150 640,200" fill="#5a1a1a"/>
+            <rect x="360" y="160" width="80" height="280" fill="#4a4a3a"/>
+            <polygon points="360,160 400,100 440,160" fill="#5a1a1a"/>
+            <text x="400" y="480" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">GOMEL PALACE</text>
+        </svg>`,
+
+        "svg-turov": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="tv" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a1a0a"/><stop offset="100%" stop-color="#2a2a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#tv)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="0" y="360" width="800" height="140" fill="#1a3a1a"/>
+            <rect x="350" y="200" width="100" height="160" fill="#4a3a2a"/>
+            <polygon points="350,200 400,140 450,200" fill="#5a1a1a"/>
+            <rect x="380" y="240" width="20" height="30" fill="#1a0a0a"/>
+            <rect x="410" y="240" width="20" height="30" fill="#1a0a0a"/>
+            <rect x="395" y="300" width="20" height="60" fill="#1a0a0a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">TUROV</text>
+        </svg>`,
+
+        "svg-ola": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="ol" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a0a"/><stop offset="100%" stop-color="#1a3a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#ol)"/>
+            <circle cx="650" cy="90" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <path d="M 0 320 Q 400 280 800 320 L 800 500 L 0 500 Z" fill="#0e2a0e"/>
+            <path d="M 0 400 Q 400 360 800 400" stroke="#4a3a2a" stroke-width="8" fill="none"/>
+            <g fill="#0a1a0a">
+                <polygon points="150,320 165,270 180,320"/>
+                <polygon points="250,320 265,260 280,320"/>
+                <polygon points="550,320 565,270 580,320"/>
+                <polygon points="650,320 665,260 680,320"/>
+            </g>
+            <text x="400" y="480" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">OLA RIVER TRAIL</text>
+        </svg>`,
+
+        "svg-pripyatsky": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="prp" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a2a"/><stop offset="100%" stop-color="#1a3a4a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#prp)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="0" y="330" width="800" height="170" fill="#1a4a6a"/>
+            <ellipse cx="200" cy="400" rx="80" ry="20" fill="#0a3a5a"/>
+            <ellipse cx="600" cy="420" rx="100" ry="25" fill="#0a3a5a"/>
+            <g fill="#0a1a0a">
+                <polygon points="100,330 120,270 140,330"/>
+                <polygon points="200,330 220,260 240,330"/>
+                <polygon points="600,330 620,280 640,330"/>
+                <polygon points="700,330 720,270 740,330"/>
+            </g>
+            <text x="400" y="480" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">PRIPYATSKY NATIONAL PARK</text>
+        </svg>`,
+
+        "svg-vetka": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="ve" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a0a0a"/><stop offset="100%" stop-color="#2a1a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#ve)"/>
+            <circle cx="650" cy="100" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="200" y="240" width="400" height="200" fill="#4a3a3a"/>
+            <rect x="200" y="240" width="400" height="20" fill="#3a2a2a"/>
+            <rect x="360" y="180" width="80" height="60" fill="#3a2a2a"/>
+            <polygon points="360,180 400,130 440,180" fill="#5a1a1a"/>
+            <rect x="380" y="260" width="40" height="60" fill="#1a0a0a"/>
+            <rect x="280" y="280" width="30" height="30" fill="#ffcc44" opacity="0.7"/>
+            <rect x="490" y="280" width="30" height="30" fill="#ffcc44" opacity="0.7"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">VETKA</text>
+        </svg>`,
+
+        "svg-krewo": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="kr" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a2a"/><stop offset="100%" stop-color="#1a2a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#kr)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="200" y="300" width="400" height="150" fill="#3a2a1a"/>
+            <rect x="180" y="260" width="40" height="190" fill="#2a1a0a"/>
+            <polygon points="180,260 200,210 220,260" fill="#5a1a1a"/>
+            <rect x="580" y="260" width="40" height="190" fill="#2a1a0a"/>
+            <polygon points="580,260 600,210 620,260" fill="#5a1a1a"/>
+            <rect x="0" y="450" width="800" height="50" fill="#1a3a1a"/>
+            <text x="400" y="490" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">KREWO CASTLE RUINS</text>
+        </svg>`,
+
+        "svg-kalozha": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="kl" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a0a2a"/><stop offset="100%" stop-color="#1a1a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#kl)"/>
+            <circle cx="650" cy="100" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="300" y="220" width="200" height="220" fill="#4a4a3a"/>
+            <rect x="300" y="220" width="200" height="20" fill="#3a3a2a"/>
+            <polygon points="300,220 400,150 500,220" fill="#5a4a3a"/>
+            <rect x="380" y="280" width="40" height="60" fill="#1a0a0a"/>
+            <rect x="360" y="180" width="20" height="40" fill="#1a0a0a"/>
+            <rect x="420" y="180" width="20" height="40" fill="#1a0a0a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">KALOZHA CHURCH (XII c.)</text>
+        </svg>`,
+
+        "svg-mosty": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="ms" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a2a"/><stop offset="100%" stop-color="#1a3a5a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#ms)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="0" y="380" width="800" height="120" fill="#1a3a5a"/>
+            <path d="M 0 300 Q 400 180 800 300" stroke="#5a3a2a" stroke-width="12" fill="none"/>
+            <rect x="0" y="295" width="800" height="10" fill="#3a2a1a"/>
+            <line x1="100" y1="290" x2="100" y2="380" stroke="#3a2a1a" stroke-width="6"/>
+            <line x1="700" y1="290" x2="700" y2="380" stroke="#3a2a1a" stroke-width="6"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">MOSTY SUSPENSION BRIDGE</text>
+        </svg>`,
+
+        "svg-miller": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="ml" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a1a0a"/><stop offset="100%" stop-color="#2a2a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#ml)"/>
+            <circle cx="650" cy="90" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="250" y="280" width="300" height="180" fill="#4a3a1a"/>
+            <rect x="250" y="280" width="300" height="20" fill="#3a2a0a"/>
+            <polygon points="250,280 400,180 550,280" fill="#3a2a1a"/>
+            <circle cx="400" cy="230" r="50" fill="#3a2a0a" stroke="#5a3a1a" stroke-width="6"/>
+            <line x1="400" y1="180" x2="400" y2="280" stroke="#5a3a1a" stroke-width="6"/>
+            <line x1="350" y1="230" x2="450" y2="230" stroke="#5a3a1a" stroke-width="6"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">"FREE MILLER" COMPLEX</text>
+        </svg>`,
+
+        "svg-korobchitsy": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="kb" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a0a"/><stop offset="100%" stop-color="#1a2a0a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#kb)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="0" y="400" width="800" height="100" fill="#0a1a0a"/>
+            <g fill="#3a2a1a">
+                <polygon points="200,400 220,320 240,400"/>
+                <polygon points="300,400 320,310 340,400"/>
+                <polygon points="500,400 520,320 540,400"/>
+                <polygon points="600,400 620,310 640,400"/>
+            </g>
+            <rect x="250" y="330" width="80" height="70" fill="#4a3a1a"/>
+            <rect x="470" y="330" width="80" height="70" fill="#4a3a1a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">KOROBCHITSY PARTISAN CAMP</text>
+        </svg>`,
+
+        "svg-ivyanets": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="iv" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a0a2a"/><stop offset="100%" stop-color="#1a1a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#iv)"/>
+            <circle cx="650" cy="100" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="150" y="260" width="200" height="180" fill="#4a3a2a"/>
+            <polygon points="150,260 250,180 350,260" fill="#5a1a1a"/>
+            <rect x="230" y="300" width="40" height="80" fill="#1a0a0a"/>
+            <rect x="450" y="280" width="200" height="160" fill="#3a3a4a"/>
+            <polygon points="450,280 550,210 650,280" fill="#5a4a3a"/>
+            <rect x="530" y="320" width="40" height="60" fill="#1a0a0a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">IVYANETS</text>
+        </svg>`,
+
+        "svg-slutsk": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="sl" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a0a0a"/><stop offset="100%" stop-color="#2a1a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#sl)"/>
+            <circle cx="200" cy="80" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="200" y="220" width="400" height="220" fill="#4a3a2a"/>
+            <rect x="200" y="220" width="400" height="20" fill="#3a2a1a"/>
+            <rect x="380" y="180" width="40" height="40" fill="#3a2a1a"/>
+            <polygon points="380,180 400,140 420,180" fill="#5a1a1a"/>
+            <rect x="350" y="280" width="100" height="80" fill="#5a1a1a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">SLUTSK</text>
+        </svg>`,
+
+        "svg-borisov": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="brs" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a1a0a"/><stop offset="100%" stop-color="#2a2a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#brs)"/>
+            <circle cx="650" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="0" y="360" width="800" height="140" fill="#1a3a1a"/>
+            <rect x="250" y="300" width="300" height="60" fill="#3a2a1a"/>
+            <polygon points="250,300 400,260 550,300" fill="#2a1a0a"/>
+            <circle cx="300" cy="340" r="15" fill="#1a0a0a"/>
+            <circle cx="500" cy="340" r="15" fill="#1a0a0a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">BORISOV — 1812 BATTLE</text>
+        </svg>`,
+
+        "svg-nesvizh-attr": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="ns" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#1a0a0a"/><stop offset="50%" stop-color="#2a1a0a"/><stop offset="100%" stop-color="#0a0a0a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#ns)"/>
+            <circle cx="640" cy="150" r="45" fill="#ff6644" opacity="0.6"/>
+            <circle cx="640" cy="150" r="75" fill="#ff6644" opacity="0.2"/>
+            <rect x="170" y="290" width="460" height="150" fill="#4a3a28"/>
+            <rect x="170" y="290" width="460" height="20" fill="#3a2a18"/>
+            <rect x="150" y="220" width="70" height="220" fill="#4a3a28"/>
+            <polygon points="150,220 185,150 220,220" fill="#5a1a1a"/>
+            <rect x="580" y="220" width="70" height="220" fill="#4a3a28"/>
+            <polygon points="580,220 615,150 650,220" fill="#5a1a1a"/>
+            <rect x="360" y="180" width="80" height="260" fill="#4a3a28"/>
+            <polygon points="360,180 400,90 440,180" fill="#5a1a1a"/>
+            <rect x="395" y="60" width="6" height="30" fill="#666"/>
+            <rect x="401" y="60" width="40" height="22" fill="#d32f2f"/>
+            <rect x="401" y="60" width="40" height="11" fill="#009a49"/>
+            <rect x="0" y="440" width="800" height="60" fill="#1a1a3a" opacity="0.5"/>
+            <text x="400" y="490" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">NESVIZH CASTLE</text>
+        </svg>`,
+
+        "svg-zhilichy": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="zh" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a0a2a"/><stop offset="100%" stop-color="#1a1a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#zh)"/>
+            <circle cx="650" cy="100" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="180" y="240" width="440" height="200" fill="#4a3a3a"/>
+            <rect x="180" y="240" width="440" height="20" fill="#3a2a2a"/>
+            <rect x="160" y="200" width="40" height="240" fill="#4a3a3a"/>
+            <polygon points="160,200 180,150 200,200" fill="#5a1a1a"/>
+            <rect x="600" y="200" width="40" height="240" fill="#4a3a3a"/>
+            <polygon points="600,200 620,150 640,200" fill="#5a1a1a"/>
+            <rect x="360" y="160" width="80" height="280" fill="#4a3a3a"/>
+            <polygon points="360,160 400,100 440,160" fill="#5a1a1a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">ZHILICHY PALACE</text>
+        </svg>`,
+
+        "svg-duleby": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="dl" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a2a1a"/><stop offset="100%" stop-color="#1a3a2a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#dl)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <path d="M 0 320 Q 400 280 800 320 L 800 500 L 0 500 Z" fill="#0e2a0e"/>
+            <ellipse cx="400" cy="410" rx="160" ry="40" fill="#2a5a8a"/>
+            <ellipse cx="400" cy="410" rx="100" ry="22" fill="#4a8ac0"/>
+            <g fill="#0a1a0a">
+                <polygon points="150,320 170,250 190,320"/>
+                <polygon points="250,320 270,240 290,320"/>
+                <polygon points="510,320 530,250 550,320"/>
+                <polygon points="610,320 630,240 650,320"/>
+            </g>
+            <text x="400" y="480" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">DULEBY ISLAND RESERVE</text>
+        </svg>`,
+
+        "svg-buynichi": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="bn" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a1a0a"/><stop offset="100%" stop-color="#1a3a1a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#bn)"/>
+            <circle cx="650" cy="100" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="0" y="380" width="800" height="120" fill="#0e2a0e"/>
+            <polygon points="400,180 420,260 500,260 440,310 460,390 400,340 340,390 360,310 300,260 380,260" fill="#d32f2f"/>
+            <rect x="380" y="390" width="40" height="30" fill="#3a2a1a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">BUYNICHI FIELD MEMORIAL</text>
+        </svg>`,
+
+        "svg-blue-spring": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="bs" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a2a1a"/><stop offset="100%" stop-color="#1a3a2a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#bs)"/>
+            <circle cx="200" cy="80" r="30" fill="#f0f0ff" opacity="0.9"/>
+            <ellipse cx="400" cy="300" rx="220" ry="110" fill="#1a5a8a"/>
+            <ellipse cx="400" cy="300" rx="160" ry="75" fill="#2a80b8"/>
+            <ellipse cx="400" cy="300" rx="100" ry="48" fill="#4aa8e0"/>
+            <ellipse cx="400" cy="300" rx="50" ry="22" fill="#80d0f0"/>
+            <g fill="#0a1a0a">
+                <polygon points="150,300 170,230 190,300"/>
+                <polygon points="610,300 630,230 650,300"/>
+            </g>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">BLUE SPRING</text>
+        </svg>`,
+
+        "svg-potemkin": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="pk" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#0a0a2a"/><stop offset="100%" stop-color="#1a1a3a"/></linearGradient></defs>
+            <rect width="800" height="500" fill="url(#pk)"/>
+            <circle cx="650" cy="100" r="35" fill="#f0f0ff" opacity="0.9"/>
+            <rect x="200" y="240" width="400" height="200" fill="#4a4a3a"/>
+            <rect x="200" y="240" width="400" height="20" fill="#3a3a2a"/>
+            <rect x="180" y="200" width="40" height="240" fill="#4a4a3a"/>
+            <polygon points="180,200 200,150 220,200" fill="#5a1a1a"/>
+            <rect x="580" y="200" width="40" height="240" fill="#4a4a3a"/>
+            <polygon points="580,200 600,150 620,200" fill="#5a1a1a"/>
+            <rect x="360" y="160" width="80" height="280" fill="#4a4a3a"/>
+            <polygon points="360,160 400,100 440,160" fill="#5a1a1a"/>
+            <text x="400" y="485" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold" letter-spacing="2">POTEMKIN PALACE</text>
+        </svg>`,
+
+        // ===== Общие =====
+        "svg-mir": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="500" fill="#0a0a2a"/><circle cx="650" cy="80" r="30" fill="#f0f0ff"/><rect x="180" y="250" width="440" height="200" fill="#4a3a28"/><rect x="160" y="180" width="65" height="270" fill="#5a4a38"/><polygon points="160,180 192,105 225,180" fill="#5a1a1a"/><rect x="575" y="180" width="65" height="270" fill="#5a4a38"/><polygon points="575,180 607,105 640,180" fill="#5a1a1a"/><rect x="355" y="150" width="90" height="300" fill="#5a4a38"/><polygon points="355,150 400,65 445,150" fill="#5a1a1a"/><text x="400" y="490" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold">MIR CASTLE · UNESCO</text></svg>`,
+        "svg-nesvizh": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="500" fill="#2a0a1a"/><circle cx="640" cy="170" r="40" fill="#ff6644" opacity="0.6"/><rect x="170" y="290" width="460" height="150" fill="#5a4a38"/><rect x="150" y="220" width="70" height="220" fill="#4a3a28"/><polygon points="150,220 185,150 220,220" fill="#5a1a1a"/><rect x="580" y="220" width="70" height="220" fill="#4a3a28"/><polygon points="580,220 615,150 650,220" fill="#5a1a1a"/><rect x="360" y="180" width="80" height="260" fill="#4a3a28"/><polygon points="360,180 400,90 440,180" fill="#5a1a1a"/><text x="400" y="490" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold">NESVIZH CASTLE</text></svg>`,
+        "svg-minsk": `<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="500" fill="#0a0a2a"/><circle cx="650" cy="100" r="40" fill="#f0f0ff"/><rect x="160" y="220" width="480" height="230" fill="#3a3a4a"/><rect x="160" y="220" width="480" height="25" fill="#2a2a3a"/><rect x="180" y="260" width="28" height="190" fill="#4a4a5a"/><rect x="240" y="260" width="28" height="190" fill="#4a4a5a"/><rect x="300" y="260" width="28" height="190" fill="#4a4a5a"/><rect x="360" y="260" width="28" height="190" fill="#4a4a5a"/><rect x="420" y="260" width="28" height="190" fill="#4a4a5a"/><rect x="480" y="260" width="28" height="190" fill="#4a4a5a"/><rect x="540" y="260" width="28" height="190" fill="#4a4a5a"/><ellipse cx="400" cy="220" rx="130" ry="50" fill="#4a4a5a"/><rect x="270" y="190" width="260" height="30" fill="#4a4a5a"/><rect x="396" y="100" width="8" height="90" fill="#666"/><rect x="404" y="100" width="60" height="38" fill="#d32f2f"/><rect x="404" y="100" width="60" height="19" fill="#009a49"/><text x="400" y="490" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold">PALACE OF INDEPENDENCE · MINSK</text></svg>`,
+        "svg-nature": `<svg viewBox="0 0 1200 500" xmlns="http://www.w3.org/2000/svg"><rect width="1200" height="500" fill="#0a1a3a"/><circle cx="950" cy="120" r="40" fill="#f0f0ff"/><path d="M 0 280 Q 200 230 400 270 Q 600 240 800 280 Q 1000 250 1200 280 L 1200 500 L 0 500 Z" fill="#1e3a1e"/><path d="M 0 340 Q 300 290 600 330 Q 900 290 1200 340 L 1200 500 L 0 500 Z" fill="#0e2a0e"/><ellipse cx="600" cy="430" rx="500" ry="60" fill="#2a5a8a"/><text x="600" y="490" text-anchor="middle" fill="#ff5252" font-size="22" font-family="Arial" font-weight="bold">NATURE OF BELARUS</text></svg>`
+    };
+
+    // ============================================================
+    // БАЗА ДАННЫХ
+    // ============================================================
+    const DATA = {
+        "brest-oblast": { tag: "Region", title: "Brest Oblast", desc: "Located in the southwest of Belarus, bordering Poland and Ukraine. It is the leading region in terms of organized tourism. Population: 1,290,628 people. Capital: Brest (347,138 people). Famous for the Brest Hero Fortress and Belovezhskaya Pushcha.", regionInfo: "Key attractions: Brest Hero Fortress, Belovezhskaya Pushcha, Kosovo Palace, Ruzhany Palace, Pripyat River Cruises.", svgId: "svg-brest-oblast" },
+        "vitebsk-oblast": { tag: "Region", title: "Vitebsk Oblast", desc: "Located in the north of Belarus, bordering Latvia, Lithuania and Russia. Known for its unique lake district and glacial landscapes. Population: ~1,081,000 people. Capital: Vitebsk.", regionInfo: "Key attractions: Braslav Lakes, Ginkovskaya Cave, Kozyany Swamp Reserve, Ula Castle.", svgId: "svg-vitebsk-oblast" },
+        "gomel-oblast": { tag: "Region", title: "Gomel Oblast", desc: "The largest region in the southeast of Belarus, bordering Russia and Ukraine. Known for its Polesie landscapes. Population: ~1,338,000 people. Capital: Gomel.", regionInfo: "Key attractions: Gomel Palace, Turov, Ola River Trail, Pripyatsky National Park, Vetka.", svgId: "svg-gomel-oblast" },
+        "grodno-oblast": { tag: "Region", title: "Grodno Oblast", desc: "Located in the west of Belarus, bordering Poland and Lithuania. Rich in historical and architectural monuments. Population: ~1,004,000 people. Capital: Grodno.", regionInfo: "Key attractions: Krewo Castle, Kalozha Church, Mosty Bridge, 'Free Miller' Complex, 'Korobchitsy' Partisan Camp.", svgId: "svg-grodno-oblast" },
+        "minsk-oblast": { tag: "Region", title: "Minsk Oblast", desc: "The central region of Belarus, surrounding the capital. Includes the highest point of the country — Dzerzhinsky Hill (345 m). Population: ~1,480,000 people. Capital: Minsk.", regionInfo: "Key attractions: Ivyanets, Slutsk, Borisov, Nesvizh Castle.", svgId: "svg-minsk-oblast" },
+        "mogilev-oblast": { tag: "Region", title: "Mogilev Oblast", desc: "Located in the east of Belarus, bordering Russia. Known for its unique natural sites and historical palaces. Population: ~981,000 people. Capital: Mogilev.", regionInfo: "Key attractions: Zhilichy Palace, Duleby Island, Buynichi, Blue Spring, Potemkin Palace.", svgId: "svg-mogilev-oblast" },
+
+        "brest-fortress": { tag: "Attraction · Brest Oblast", title: "Brest Hero Fortress", desc: "One of the most famous WWII memorials in Belarus, awarded the title 'Hero Fortress' in 1965. A symbol of the unbending spirit of the defenders.", svgId: "svg-brest-fortress" },
+        "belovezhskaya": { tag: "Attraction · Brest Oblast", title: "Belovezhskaya Pushcha National Park", desc: "A UNESCO World Heritage Site, one of Europe's largest primeval forests. Home to the European bison.", svgId: "svg-belovezhskaya" },
+        "kosovo-palace": { tag: "Attraction · Brest Oblast", title: "Kosovo Palace", desc: "A 19th-century neo-Gothic palace built for the Pusłowski family. Known as 'the little Versailles of Belarus'.", svgId: "svg-kosovo-palace" },
+        "ruzhany-palace": { tag: "Attraction · Brest Oblast", title: "Ruzhany Sapieha Palace", desc: "The ruins of a magnificent 17th-century palace of the Sapieha family.", svgId: "svg-ruzhany" },
+        "pripyat-cruise": { tag: "Attraction · Brest Oblast", title: "Pripyat River Cruises", desc: "The only river cruise experience in Belarus. Travel along the Pripyat River through unique Polesie landscapes.", svgId: "svg-pripyat" },
+
+        "braslav-lakes": { tag: "Attraction · Vitebsk Oblast", title: "Braslav Lakes National Park", desc: "One of Belarus' most famous natural sites, with 267 lakes (74 within the park). Hiking trails, and 216 species of birds.", svgId: "svg-braslav" },
+        "ginkovskaya-cave": { tag: "Attraction · Vitebsk Oblast", title: "Ginkovskaya Cave", desc: "The only karst cave in Belarus, about 10 meters long with three entrances. Legends say treasure was hidden here.", svgId: "svg-cave" },
+        "kozyany-swamp": { tag: "Attraction · Vitebsk Oblast", title: "Kozyany Swamp Reserve", desc: "A unique landscape with about 400 small lakes scattered across a swampy area — the 'Mercury-like landscape'.", svgId: "svg-swamp" },
+        "ula-castle": { tag: "Attraction · Vitebsk Oblast", title: "Ula Castle Ruins", desc: "Remains of a castle built during the reign of Stefan Batory in the 16th century.", svgId: "svg-ula" },
+
+        "gomel-palace": { tag: "Attraction · Gomel Oblast", title: "Gomel Palace", desc: "The former palace of the Rumyantsev and Paskevich families, with the Peter and Paul Cathedral and a famous winter garden.", svgId: "svg-gomel-palace" },
+        "turov": { tag: "Attraction · Gomel Oblast", title: "Turov", desc: "The ancient capital of the Turov Principality and the spiritual center of Polesie.", svgId: "svg-turov" },
+        "ola-trail": { tag: "Attraction · Gomel Oblast", title: "Ola River Ecological Trail", desc: "Opened in 2024 in the 'Vydritsa' Nature Reserve, about 980 meters long.", svgId: "svg-ola" },
+        "pripyatsky-park": { tag: "Attraction · Gomel Oblast", title: "Pripyatsky National Park", desc: "A unique Polesie landscape with over 250 bird species — often called the 'Amazon of Europe'.", svgId: "svg-pripyatsky" },
+        "vetka": { tag: "Attraction · Gomel Oblast", title: "Vetka", desc: "A historic center of Old Believers, with a museum of Old Believer and Belarusian traditions.", svgId: "svg-vetka" },
+
+        "krewo-castle": { tag: "Attraction · Grodno Oblast", title: "Krewo Castle", desc: "Ruins of a 14th-century castle where the Union of Krewo was signed in 1385.", svgId: "svg-krewo" },
+        "kalozha-church": { tag: "Attraction · Grodno Oblast", title: "Kalozha Church", desc: "The oldest surviving Orthodox church in Belarus, built in the 12th century.", svgId: "svg-kalozha" },
+        "mosty-bridge": { tag: "Attraction · Grodno Oblast", title: "Mosty Suspension Bridge", desc: "The longest suspension bridge in Belarus, spanning the Neman River at 193 meters.", svgId: "svg-mosty" },
+        "free-miller": { tag: "Attraction · Grodno Oblast", title: "'Free Miller' Tourist Complex", desc: "Located in Lida District, converted from an old water mill. Offers traditional Belarusian food, beer tasting and a museum of milling.", svgId: "svg-miller" },
+        "korobchitsy": { tag: "Attraction · Grodno Oblast", title: "'Korobchitsy' Partisan Camp", desc: "An authentic recreation of WWII partisan life.", svgId: "svg-korobchitsy" },
+
+        "ivyanets": { tag: "Attraction · Minsk Oblast", title: "Ivyanets", desc: "A town with two remarkable churches: St. Alexei Church (neo-Gothic) and St. Michael the Archangel Church (1749, Vilnius Baroque style).", svgId: "svg-ivyanets" },
+        "slutsk": { tag: "Attraction · Minsk Oblast", title: "Slutsk", desc: "The world-famous birthplace of Slutsk sashes — luxurious silk belts worn by nobility in the 18th century.", svgId: "svg-slutsk" },
+        "borisov": { tag: "Attraction · Minsk Oblast", title: "Borisov", desc: "The historic site of the 1812 Berezina battle between Napoleon's army and Russian troops.", svgId: "svg-borisov" },
+        "nesvizh-attr": { tag: "Attraction · Minsk Oblast", title: "Nesvizh Castle", desc: "The historic palace of the Radziwiłł family. Included in the UNESCO World Heritage List.", svgId: "svg-nesvizh-attr" },
+
+        "zhilichy-palace": { tag: "Attraction · Mogilev Oblast", title: "Zhilichy Palace", desc: "The neo-Gothic palace of the Bulgakov family, known as 'the Versailles of Belarus'.", svgId: "svg-zhilichy" },
+        "duleby-island": { tag: "Attraction · Mogilev Oblast", title: "'Duleby Island' Nature Reserve", desc: "A unique forest landscape with rare animals and lakes. Hosts an annual eco-art festival.", svgId: "svg-duleby" },
+        "buynichi": { tag: "Attraction · Mogilev Oblast", title: "Buynichi", desc: "The Buynichi Field memorial and zoo, with traditional craft workshops.", svgId: "svg-buynichi" },
+        "blue-spring": { tag: "Attraction · Mogilev Oblast", title: "'Blue Spring'", desc: "One of Europe's largest natural springs, with blue-green water at a constant temperature of about 5°C.", svgId: "svg-blue-spring" },
+        "potemkin-palace": { tag: "Attraction · Mogilev Oblast", title: "Potemkin Palace (Krichev)", desc: "A late 18th-century palace built for Prince Grigory Potemkin, a favorite of Catherine the Great. Now a museum.", svgId: "svg-potemkin" }
+    };
+
+    // ============================================================
+    // MODAL
+    // ============================================================
+    const modal = document.getElementById("modal");
+    const modalClose = document.getElementById("modalClose");
+    const modalImage = document.getElementById("modalImage");
+    const modalTag = document.getElementById("modalTag");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDesc = document.getElementById("modalDesc");
+    const modalRegionInfo = document.getElementById("modalRegionInfo");
+
+    function openModal(key) {
+        const item = DATA[key];
+        if (!item) return;
+        modalTag.textContent = item.tag || "Info";
+        modalTitle.textContent = item.title || "";
+        modalDesc.textContent = item.desc || "";
+        modalImage.innerHTML = SVG[item.svgId] || "";
+        if (item.regionInfo) {
+            modalRegionInfo.style.display = "block";
+            modalRegionInfo.textContent = item.regionInfo;
+        } else {
+            modalRegionInfo.style.display = "none";
+        }
+        modal.classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+        modal.classList.remove("active");
+        document.body.style.overflow = "";
+    }
+
+    modalClose.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".region-name[data-region]").forEach(el => {
+            el.addEventListener("click", () => openModal(el.dataset.region));
+        });
+        document.querySelectorAll("h3[data-region]").forEach(el => {
+            el.addEventListener("click", () => openModal(el.dataset.region));
+        });
+        document.querySelectorAll("li[data-attraction]").forEach(el => {
+            el.addEventListener("click", () => openModal(el.dataset.attraction));
+        });
+    });
+    </script>
+</body>
+</html>
